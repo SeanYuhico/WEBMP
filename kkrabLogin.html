@@ -1,12 +1,6 @@
 <html>
     <head>
         <link href="krusty.css" rel="stylesheet" type="text/css">
-        <style>
-            
-            
-        </style>
-        <script>
-        </script>
     </head>
     <body scroll>
         <div id = "container" >
@@ -18,13 +12,13 @@
                 <h1 id="login-header-text">WELCOME</h1>
                 <h2 id="login-header-text">You need to sign in to access our data.</h2>
             </div>
-            <div id= "login-container">
+            <form id= "login-container" onsubmit="validateForm()">
                 <div class="login-field">
-                    <label class="login-field_label" for="email">Email</label>
+                    <label class="login-field_label" for="text">Username</label>
                     <input class="login-field_input" 
-                    placeholder="E.g. username@company.com" 
-                    type="email" autocomplete="email" 
-                    id="email" data-signup-email="">
+                    placeholder="username" 
+                    type="text" 
+                    id="username">
                 </div>
                 <div class="login-field">
                     <input class="login-field_input" 
@@ -34,15 +28,16 @@
                 </div>
                 <div>
                     <input class="submit-btn"
-                    type="button" 
+                    type="submit" 
                     name="submit-btn"
                     value="PROCEED">
                 </div>
-            </div>
+            </form>
             <div id="krusty_krab_restaurant">
                     <img src="assets/Bottle_Burglars_001.png">
             </div>
         </div>
     </body>
-
+    <script src="/kkrabLogin.js">
+    </script>
 </html>
