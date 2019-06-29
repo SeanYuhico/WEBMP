@@ -1,7 +1,14 @@
+@font-face {
+    font-family: Spongeboy;
+    src: url("assets/Spongeboy\ Me\ Bob.ttf");
+}
+
+
 body {
     align-content: center;
     align-items: center;
     scroll-margin: 0px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 html, body {
@@ -20,6 +27,7 @@ h1 {
 }
 
 h2 {
+    font-family: "MuseoSans",Arial,sans-serif;
     margin-top: 0px;
     font-size: 1.2rem;
 }
@@ -50,12 +58,13 @@ h2 {
 }
 /* #6271B8 #8D0C13*/
 .krusty-header {
-    display: flex;
-    padding-top: 20px;
+    padding-top: 25px;
     float: center;
-    font-family: "MuseoSans",Arial,sans-serif;
     font-size: 30px;
-    color: white;
+    font-family: 'Spongeboy';
+    color: #9e3a3a;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: white;
 }
 
 .krusty-logo {
@@ -73,7 +82,32 @@ h2 {
     justify-content: center;
     align-content: center;
     text-align: center;
+    color: white;
 }
+
+@media all and (max-height: 480px) {        
+    @media all and (max-width: 680px)  {       
+        #login-header {
+            display: none;
+        }
+    }
+    #login-container {
+        margin-top: 2rem; 
+    }
+ }
+
+ @media all and (max-height: 360px) and (max-width: 680px) {                  
+    .krusty-header {
+        display: none;
+    }
+ }
+
+ @media all and (max-width: 450px) {
+    .krusty-header {
+        font-size: 20px;
+    }
+
+ }
 
 #login-container {
     display: flex;
