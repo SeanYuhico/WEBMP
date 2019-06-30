@@ -1,0 +1,22 @@
+{
+  "name": "webmp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "test5.js",
+  "scripts": {
+    "check": "json-server --watch data.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SeanYuhico/WEBMP.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SeanYuhico/WEBMP/issues"
+  },
+  "homepage": "https://github.com/SeanYuhico/WEBMP#readme",
+  "dependencies": {
+    "json-server": "^0.15.0"
+  }
+}
