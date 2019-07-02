@@ -4,7 +4,7 @@
   "description": "",
   "main": "test5.js",
   "scripts": {
-    "check": "json-server --watch krustykrab.json"
+    "check": "json-server --watch krustykrab_array.json"
   },
   "repository": {
     "type": "git",
