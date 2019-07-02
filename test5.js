@@ -2,30 +2,27 @@ function float2dollar(value) {
     return "U$ " + (value).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
 }
 
-function renderChart(data, labels) {
+function renderChart(dataset, label) {
+    console.log("oof")
     var ctx = document.getElementById("myChart").getContext('2d');
+    console.log("pare")
+    console.log(label)
+    
     var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: labels,
+            labels: label,
             datasets: [
                 {
-                    label: 'Krusty Combo',
-                    data: data[0],
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                },
-                {
-                    label: 'Krusty Deluxe',
-                    data: data[1],
-                    borderColor: 'rgba(192, 192, 192, 1)',
-                    backgroundColor: 'rgba(192, 192, 192, 0.2)',
-                },
-                {
-                    label: 'Krabby Pattie',
-                    data: data[2],
-                    borderColor: 'rgba(192, 192, 192, 1)',
-                    backgroundColor: 'rgba(192, 192, 192, 0.2)',
+                    label: '# of sales',
+                    data: dataset,
+                    borderColor: ['rgba(75, 192, 192, 1)', 
+                        'rgba(192, 192, 192, 1)', 
+                        'rgba(192, 192, 192, 1)'],
+                    backgroundColor: ['rgba(75, 192, 192, 0.2)',
+                        'rgba(192, 192, 192, 0.2)',
+                        'rgba(192, 192, 192, 0.2)'],
+                    borderWidth: 0
                 }
             ]
         },
@@ -48,13 +45,19 @@ function getChartData() {
     $.ajax({
         url: "http://localhost:3000/burger_sales",
         success: function (result) {
+            console.log("pasok")
             $("#loadingMessage").html("");
             var data = [];
             // console.log(result["Krusty Combo"])
             data.push(result["Krusty Combo"]);
             data.push(result["Krusty Deluxe"]);
             data.push(result["Krabby Pattie"]);
-            var labels = result.burger_sales;
+
+            let labels = [];
+            for(let key in result) {
+                labels.push(key)
+            }
+
             renderChart(data, labels);
         },
         error: function (err) {
