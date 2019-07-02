@@ -47,7 +47,7 @@ h2 {
     z-index: 1;
 }
 
-#login-nav-bar {
+#nav-bar {
     position: fixed;
     top: 0px;
     left: 0px;
@@ -75,7 +75,7 @@ h2 {
     height: 75px;
 }
 
-#login-header {
+.big-header {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -85,18 +85,18 @@ h2 {
     color: white;
 }
 
-@media all and (max-height: 480px) {        
-    @media all and (max-width: 680px)  {       
-        #login-header {
-            display: none;
-        }
+@media all and (max-height: 480px) and (max-width: 700px) {        
+        
+    .big-header {
+        display: none;
     }
-    #login-container {
+    .white-container {
         margin-top: 2rem; 
     }
+    
  }
 
- @media all and (max-height: 360px) and (max-width: 680px) {                  
+ @media all and (max-height: 360px) and (max-width: 700px) {                  
     .krusty-header {
         display: none;
     }
@@ -109,7 +109,7 @@ h2 {
 
  }
 
-#login-container {
+.white-container {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -159,7 +159,7 @@ h2 {
     width: 200px;;
 }
 
-.submit-btn {
+.button1 {
     position: relative;
     padding: 5px;
     border: 0px;
@@ -173,7 +173,7 @@ h2 {
     height: 40px;
 }
 
-.submit-btn:hover {
+.button1:hover {
     background-image: linear-gradient(200deg,#caeaf6,#8989ff);
     box-shadow: 1px 0 5px #caeaf6;
 }

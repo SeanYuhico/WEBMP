@@ -4,15 +4,15 @@
     </head>
     <body scroll>
         <div id = "container" >
-            <nav id = "login-nav-bar">
+            <nav id = "nav-bar">
                 <img class="krusty-logo" src="assets/KrustyKrabLogo.png">
                 <header class="krusty-header">THE KRUSTY KRAB</header> 
             </nav>
-            <div id="login-header">
+            <div class="big-header">
                 <h1 id="login-header-text">WELCOME</h1>
                 <h2 id="login-header-text">You need to sign in to access our data.</h2>
             </div>
-            <form id= "login-container" onsubmit="validateForm()">
+            <form class="white-container" onsubmit="validateForm()">
                 <div class="login-field">
                     <label class="login-field_label" for="text">Username</label>
                     <input class="login-field_input" 
@@ -27,7 +27,7 @@
                     id="password">
                 </div>
                 <div>
-                    <input class="submit-btn"
+                    <input class="button1"
                     type="submit" 
                     name="submit-btn"
                     value="PROCEED">
@@ -38,6 +38,6 @@
             </div>
         </div>
     </body>
-    <script src="/kkrabLogin.js">
+    <script src="kkrabLogin.js">
     </script>
 </html>

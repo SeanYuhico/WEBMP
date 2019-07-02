@@ -18,6 +18,6 @@ function validateForm() {
     if (document.getElementById("username").value == "admin"
         && document.getElementById("password").value == "p@ssword") {
             console.log("woh")
-            window.open('/kkrabFull.html', '_self');
+            window.open('kkrabFull.html', '_self');
         }
   }
