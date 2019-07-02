@@ -48,21 +48,21 @@ $(document).ready(function(){
         console.log(sales[0])
         //console.log(sales.filter(checkDate));
         //var byName = filterByProperty(arr, "name", "Fran");
-        var byDate = filterByDate(sales, "2019-06-07");
+        var byDate = filterByDate(sales, "2019-06-07", "08");
         console.log(byDate);
         console.log(filteredSalesCount)
         console.log("-------------------")
     })
 });
 
-function filterByDate(array, date){
+function filterByDate(array, date, time){
     var filtered = [];
     filteredSalesCount = 0;
     for(var i = 0; i < array.length; i++){
 
         var obj = array[i];
         let strDatetime = obj.datetime;
-        if (strDatetime.includes(date)) {
+        if (strDatetime.includes(date + " " + time)) {
             filtered.push(obj)
         }
     }    

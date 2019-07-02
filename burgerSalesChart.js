@@ -7,7 +7,6 @@ function renderChart(dataset, label) {
     var ctx = document.getElementById("myChart").getContext('2d');
     console.log("pare")
     console.log(label)
-    
     var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
