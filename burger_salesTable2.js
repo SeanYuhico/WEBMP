@@ -7,18 +7,16 @@ function CreateTableFromJSON(dataset, labels) {
     // ('Book ID', 'Book Name', 'Category' and 'Price')
     var col = [];
     for (var i = 0; i < myOrders.length; i++) {
-        // for (var key in myOrders[i]) {
-        //     // console.log(key)
-        //     if (col.indexOf(key) == -1) {
-        //         col.push(key);
-        //     }
-        //     console.log(col[i])
-        // }
-        if (col.indexOf(i) == -1) {
-            col.push(myOrders[i]);
+        for (var key in myOrders[i]) {
+            // console.log(key)
+            if (col.indexOf(key) === -1) {
+                col.push(key);
+            }
         }
-        console.log(col[i])
+        // if (col.indexOf(i) === -1) {
+        //     col.push(myOrders[i]);
     }
+    console.log(col)
 
     // CREATE DYNAMIC TABLE.
     var table = document.createElement("table");
@@ -39,7 +37,7 @@ function CreateTableFromJSON(dataset, labels) {
         tr = table.insertRow(-1);
         console.log(myData[i])
         var tabCell = tr.insertCell(-1);
-            tabCell.innerHTML = myData[i];//[col[j]];
+            tabCell.innerHTML = myData[i][col[i]];//[col[j]];
         // for (var j = 0; j < myData.length; j++) {
         //     var tabCell = tr.insertCell(-1);
         //     tabCell.innerHTML = myData[i];//[col[j]];

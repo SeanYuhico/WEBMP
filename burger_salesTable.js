@@ -4,8 +4,8 @@ var dataToTable = function (dataset, labels) {
     var information=[], headerLabel=[]
     information=dataset;
     headerLabel=labels;
-    console.log(dataset)
-    console.log(labels)
+    console.log(information)
+    console.log(headerLabel)
     var columnCount = 0;
     $.each(information, function (idx, item) {
         html += '<th>' + item + '</th>';
@@ -67,6 +67,7 @@ var dataToTable = function (dataset, labels) {
 // };
 
 function getChartData() {
+    var html
     $.ajax({
         url: "http://localhost:3000/burger_sales",
         success: function (result) {
@@ -84,12 +85,14 @@ function getChartData() {
                 labels.push(key)
             }
 
-            dataToTable(data, labels);
+        html = dataToTable(data, labels);
+        console.log(html)
         },
         error: function (err) {
             $("#loadingMessage").html("Error");
-        }
+        }    
     });
+    return html
 }
 
-jQuery('#wrapper').html(getChartData());
+$('#wrapper').html(getChartData());
