@@ -1,34 +1,23 @@
-function CreateTableFromJSON() {
-    var myBooks = [
-        {
-            "Book ID": "1",
-            "Book Name": "Computer Architecture",
-            "Category": "Computers",
-            "Price": "125.60"
-        },
-        {
-            "Book ID": "2",
-            "Book Name": "Asp.Net 4 Blue Book",
-            "Category": "Programming",
-            "Price": "56.00"
-        },
-        {
-            "Book ID": "3",
-            "Book Name": "Popular Science",
-            "Category": "Science",
-            "Price": "210.40"
-        }
-    ]
-
+function CreateTableFromJSON(dataset, labels) {
+    var myOrders = [], myData = [];
+    myOrders=labels
+    myData=dataset
+    console.log(myOrders)
     // EXTRACT VALUE FOR HTML HEADER. 
     // ('Book ID', 'Book Name', 'Category' and 'Price')
     var col = [];
-    for (var i = 0; i < myBooks.length; i++) {
-        for (var key in myBooks[i]) {
-            if (col.indexOf(key) === -1) {
-                col.push(key);
-            }
+    for (var i = 0; i < myOrders.length; i++) {
+        // for (var key in myOrders[i]) {
+        //     // console.log(key)
+        //     if (col.indexOf(key) == -1) {
+        //         col.push(key);
+        //     }
+        //     console.log(col[i])
+        // }
+        if (col.indexOf(i) == -1) {
+            col.push(myOrders[i]);
         }
+        console.log(col[i])
     }
 
     // CREATE DYNAMIC TABLE.
@@ -45,14 +34,17 @@ function CreateTableFromJSON() {
     }
 
     // ADD JSON DATA TO THE TABLE AS ROWS.
-    for (var i = 0; i < myBooks.length; i++) {
+    for (var i = 0; i < myData.length; i++) {
 
         tr = table.insertRow(-1);
+        console.log(myData[i])
+        var tabCell = tr.insertCell(-1);
+            tabCell.innerHTML = myData[i];//[col[j]];
+        // for (var j = 0; j < myData.length; j++) {
+        //     var tabCell = tr.insertCell(-1);
+        //     tabCell.innerHTML = myData[i];//[col[j]];
+        // }
 
-        for (var j = 0; j < col.length; j++) {
-            var tabCell = tr.insertCell(-1);
-            tabCell.innerHTML = myBooks[i][col[j]];
-        }
     }
 
     // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
@@ -60,3 +52,33 @@ function CreateTableFromJSON() {
     divContainer.innerHTML = "";
     divContainer.appendChild(table);
 }
+
+function getChartData() {
+    $.ajax({
+        url: "http://localhost:3000/burger_sales",
+        success: function (result) {
+            console.log("pasok")
+            $("#loadingMessage").html("");
+            var data = [];
+            // console.log(result["Krusty Combo"])
+            data.push(result["Krusty Combo"]);
+            data.push(result["Krusty Deluxe"]);
+            data.push(result["Krabby Pattie"]);
+
+            let labels = [];
+            for(let key in result) {
+                labels.push(key)
+            }
+
+            CreateTableFromJSON(data, labels);
+        },
+        error: function (err) {
+            $("#loadingMessage").html("Error");
+        }
+    });
+}
+$("#loadTable").click(
+    function () {
+        getChartData();
+    }
+);
