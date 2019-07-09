@@ -69,16 +69,81 @@ function getChartData() {
             console.log("pasok")
             $("#loadingMessage").html("");
             let data = [];
-            let dateTime=[], burger=[], species=[]
-            console.log(result)
-
+            // let dateTime=[], burger=[], species=[]
+            // console.log(result)
+            var byDate = filterByDate(result, "2019-06-07", "08");
             let labels = [];
+            let datesList=[];
+            let dateTimeList=[];
+            let tempDate = "2011-07-14"
+            let timeList = []
+            let dayCount = []
             for(let key in result) {
-                for (let k in result[key]) {
-                    console.log(result[key][0])
-                    // dateTime.push(result[key][0])
+
+                /*
+                we make a array
+                array will contain all dates 
+                First loop
+                    to do this -> for every object, check the date
+                    -> for every new date not in array, add to datelist
+                    -> sort datelist by date lol
+                Second loop
+                    -> we loop filterbydate and input the stuff from datelist
+                */
+                let temp = result[key].datetime
+                let formatted = temp.substring(0,10);
+                tempDate = formatted;
+                let tempDateTime = temp.substring(11,19);
+                // console.log(formatted);
+                if(datesList.length===0){
+                    datesList.push(formatted);
+                    dayCount.push(new Array())
+                    dayCount[0].push(key)
+                    timeList.push(new Array())
+                    timeList[0].push(key)
+                    //dayCount[key]=1;//dayCount.push(1)
+                    //substring(11,19);
                 }
+                else{
+                    let isInList = false
+                    for(let i=0;i<datesList.length;i++){
+                        if(datesList[i] === tempDate){
+                            dayCount[i].push(key)
+                            // timeList[i].push(key)
+                            isInList = true
+                        }
+                        // if(timeList[i] === tempDateTime){
+                            
+                        // }
+                    }
+/*
+[
+    {
+        time: "timestring"
+        indexes: {1, 2, 4, 5, 6, 7}
+    },
+    {
+        time: 
+    }
+]
+*/
+
+                    if (!isInList) {
+                        datesList.push(formatted);
+                        dayCount.push(new Array())
+                        dayCount[dayCount.length - 1].push(key)
+                        timeList.push(new Array())
+                        timeList[timeList.length - 1].push(key)
+                    }
+                }
+                timeList.push(tempDateTime)
+                dateTimeList.push(temp);        
             }
+            // console.log(datesList)
+            // console.log(dayCount)
+            console.log(timeList)
+            //dayCount is a 2D array of indexes per date use .length to get the display number
+            //datesList is a list of all the unique formatted dates for labelling
 
             //renderChart(data, labels);
         },
@@ -88,8 +153,40 @@ function getChartData() {
     });
 }
 
+function filterByDate(array, date){
+    let filtered = [];
+    filteredSalesCount = 0;
+    for(let i = 0; i < array.length; i++){
+
+        let obj = array[i];
+        let strDatetime = obj.datetime;
+        if (strDatetime.includes(date)) {
+            filtered.push(obj)
+        }
+    }    
+    filteredSalesCount = filtered.length;
+    return filtered;
+}
+
+function filterByDateTime(array, date, time){
+    var filtered = [];
+    filteredSalesCount = 0;
+    for(var i = 0; i < array.length; i++){
+
+        var obj = array[i];
+        let strDatetime = obj.datetime;
+        if (strDatetime.includes(date + " " + time)) {
+            filtered.push(obj)
+        }
+    }    
+    filteredSalesCount = filtered.length;
+    return filtered;
+}
+
 $("#renderBtn").click(
     function () {
         getChartData();
     }
 );
+
+//
