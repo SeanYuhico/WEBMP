@@ -69,12 +69,14 @@ function getChartData() {
             console.log("pasok")
             $("#loadingMessage").html("");
             let data = [];
-            
+            let dateTime=[], burger=[], species=[]
+            console.log(result)
 
             let labels = [];
             for(let key in result) {
                 for (let k in result[key]) {
-                    
+                    console.log(result[key][0])
+                    // dateTime.push(result[key][0])
                 }
             }
 
