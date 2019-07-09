@@ -169,8 +169,8 @@ h2 {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     border-radius: 20px;
     margin-bottom: 5px;
-    width: 150px;
-    height: 40px;
+    width: inherit;
+    height: inherit;
 }
 
 .button1:hover {
@@ -195,4 +195,13 @@ h2 {
     width: 30rem;
     bottom: 0px;
     z-index: 2;
+}
+
+#logout-span {
+    float: right;
+    position: fixed;
+    right: 10px;
+    top: 0px;
+    padding-top: 1.3rem;
+    width: 100px;
 }

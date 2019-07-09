@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <title>Exploring datatables plug-in</title>
+</head>
+<style>
+        .container {
+            width: 50%;
+            height: 50%;
+            position: relative;
+        }
+        #loadingMessage{
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+    <body>
+    
+        <button id="renderBtn">
+            Render
+        </button>
+        <div class="container">
+            <div id="loadingMessage"></div>        
+            <table id="myTable" class="display" width="100%"></table>
+        </div>
+    
+    </body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="datatables.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+</html>
