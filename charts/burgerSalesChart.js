@@ -40,6 +40,14 @@ function renderChart(dataset, label) {
     });
 }
 
+/*
+x-axis = datetime
+
+each bar is the number of sales per day
+stuff is counted based on datetime
+
+*/
+
 function getChartData() {
     $.ajax({
         url: "http://localhost:3000/burger_sales",
