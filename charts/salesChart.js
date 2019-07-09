@@ -27,19 +27,19 @@ function float2dollar(value) {
     return "U$ " + (value).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
 }
 
-function renderChart(dataset, label) {
+function renderChart(dateList, count, time) { //temporary lang yung pag pass ng count dito sa chart for checking purposes only kung gagana
     console.log("oof")
     var ctx = document.getElementById("myChart").getContext('2d');
     console.log("pare")
-    console.log(label)
+    console.log(count)
     var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: label,
+            labels: dateList,
             datasets: [
                 {
-                    label: 'customer species per sale',
-                    data: dataset,
+                    label: 'sales per date',
+                    data: count,
                     borderColor: ['rgba(75, 192, 192, 1)', 
                         'rgba(192, 192, 192, 1)', 
                         'rgba(192, 192, 192, 1)'],
@@ -78,6 +78,7 @@ function getChartData() {
             let tempDate = "2011-07-14"
             let timeList = []
             let dayCount = []
+            let bilang = []
             for(let key in result) {
 
                 /*
@@ -93,14 +94,16 @@ function getChartData() {
                 let temp = result[key].datetime
                 let formatted = temp.substring(0,10);
                 tempDate = formatted;
+                // console.log(temp)
                 let tempDateTime = temp.substring(11,19);
                 // console.log(formatted);
+                // console.log(tempDateTime);
                 if(datesList.length===0){
                     datesList.push(formatted);
                     dayCount.push(new Array())
                     dayCount[0].push(key)
                     timeList.push(new Array())
-                    timeList[0].push(key)
+                    timeList[0].push(tempDateTime)
                     //dayCount[key]=1;//dayCount.push(1)
                     //substring(11,19);
                 }
@@ -109,43 +112,33 @@ function getChartData() {
                     for(let i=0;i<datesList.length;i++){
                         if(datesList[i] === tempDate){
                             dayCount[i].push(key)
-                            // timeList[i].push(key)
+                            timeList[i].push(tempDateTime)
                             isInList = true
                         }
-                        // if(timeList[i] === tempDateTime){
-                            
-                        // }
+                        
                     }
-/*
-[
-    {
-        time: "timestring"
-        indexes: {1, 2, 4, 5, 6, 7}
-    },
-    {
-        time: 
-    }
-]
-*/
 
                     if (!isInList) {
                         datesList.push(formatted);
                         dayCount.push(new Array())
                         dayCount[dayCount.length - 1].push(key)
                         timeList.push(new Array())
-                        timeList[timeList.length - 1].push(key)
+                        timeList[timeList.length - 1].push(tempDateTime)
                     }
                 }
-                timeList.push(tempDateTime)
+                // timeList.push(tempDateTime)
                 dateTimeList.push(temp);        
             }
-            // console.log(datesList)
-            // console.log(dayCount)
+            for(let i=0;i<dayCount.length;i++){
+                bilang.push(dayCount[i].length)
+            }
+            console.log(datesList)
+            console.log(dayCount)
             console.log(timeList)
             //dayCount is a 2D array of indexes per date use .length to get the display number
             //datesList is a list of all the unique formatted dates for labelling
 
-            //renderChart(data, labels);
+            renderChart(datesList, bilang, timeList);
         },
         error: function (err) {
             $("#loadingMessage").html("Error");
