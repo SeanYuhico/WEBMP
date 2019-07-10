@@ -6,7 +6,25 @@
         <div id = "container">
             <nav id = "nav-bar">
                 <img class="krusty-logo" src="assets/KrustyKrabLogo.png">
-                <header class="krusty-header">THE KRUSTY KRAB</header> 
+                <!--<header class="krusty-header">THE KRUSTY KRAB</header> -->
+                <nav class = "data-menu">
+                        <ul>
+                            <li><a href="#" data-panel-link="sales">Sales</a></li>
+                            <li><a href="#" data-panel-link="species">Species</a></li>
+                            <li><a href="#" data-panel-link="burger">Burgers</a></li>
+                        </ul>
+                        <!--
+                        <span>
+                            <a href="#sales-slide" class="button1">Sales</a>
+                        </span>  
+                        <span>
+                            <a href="#customer-species-slide" class="button1">Burger data</a>
+                        </span>  
+                        <span>
+                            <a href="#burger-type-slide" class="button1">Customer data</a>
+                        </span>  
+                        -->
+                    </nav>
                 <span id = "logout-span">
                     <button id="logout-btn" class="button1" >Log-out</button>
                 </span>
@@ -28,24 +46,14 @@
             </div>
             
             
-            <div id="dashboard-view" class="view">
-                <nav>
-                    <span>
-                        <a href="#sales-slide" class="button1">Sales</a>
-                    </span>  
-                    <span>
-                        <a href="#customer-species-slide" class="button1">Burger data</a>
-                    </span>  
-                    <span>
-                        <a href="#burger-type-slide" class="button1">Customer data</a>
-                    </span>  
-                    
-                </nav>
-                <div id="data-visualization-slides" class="slide-wrapper">
-                    <div id = "sales-slide" class="slide"> Slide 1 </div>
-                    <div id = "customer-species-slide" class="slide"> Slide 2 </div>
-                    <div id = "burger-type-slide" class="slide"> Slide 3 </div>
-                </div>
+            <div id="dashboard-view" class="view show-sales">
+                
+                
+                
+                    <div id = "sales-slide" class="panel sales"> Slide 1 </div>
+                    <div id = "customer-species-slide" class="panel species"> Slide 2 </div>
+                    <div id = "burger-type-slide" class="panel burger"> Slide 3 </div>
+                
             </div>
             <!--
             <div id="dashboard-view" class="view">
@@ -83,4 +91,4 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script src="krab.js"></script>
-</html>
+</html> 
