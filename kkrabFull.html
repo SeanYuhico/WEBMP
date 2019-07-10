@@ -1,6 +1,12 @@
 <html lang="en">
     <head>
+            <link href="node_modules/datatables.net-responsive-dt/css/responsive.dataTables.css" rel="stylesheet" type="text/css">
+            <link href="node_modules/datatables.net-dt/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
+
+            <link href="node_modules/datatables.net-responsive/js/dataTables.responsive.min.js" rel="stylesheet" type="text/css">
+
         <link href="krusty.css" rel="stylesheet" type="text/css">
+        
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
     </head>
     <body>
@@ -38,11 +44,15 @@
             
             
             <div id="dashboard-view" class="view show-sales">
-                    <div id = "sales-slide" class="panel sales"> 
-                        <table id="myTable" class="display" width="100%"></table>
+                    <div id = "sales-slide" class="panel sales">
+                        <table id="myTable" class="display" width="60%"></table>
                     </div>
-                    <div id = "customer-species-slide" class="panel species"> Slide 2 </div>
-                    <div id = "burger-type-slide" class="panel burger"> Slide 3 </div>
+                    <div id = "customer-species-slide" class="panel species">
+                        <table id="specTable" class="display" width="60%"></table>
+                    </div>
+                    <div id = "burger-type-slide" class="panel burger">
+                        <table id="burgTable" class="display" width="60%"></table>
+                    </div>
                 
             </div>
             
@@ -52,8 +62,9 @@
             </div>
         </div>
     </body>
-    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+    <script src="node_modules/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="node_modules/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
-    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    <script src="krab.js"></script>
+    <script src="krab2.js"></script>
 </html> 

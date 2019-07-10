@@ -89,7 +89,7 @@ function float2dollar(value) {
 //         }
 //     });
 // }
-function renderChart(label, count, time) { //temporary lang yung pag pass ng count dito sa chart for checking purposes only kung gagana
+function renderChart(label, count) { //temporary lang yung pag pass ng count dito sa chart for checking purposes only kung gagana
     console.log($("#basicDate").val())
     console.log("oof")
     var ctx = document.getElementById("myChart").getContext('2d');
@@ -166,7 +166,7 @@ function getChartData() {
             //dayCount is a 2D array of indexes per date use .length to get the display number
             //datesList is a list of all the unique formatted dates for labelling
 
-            renderChart(datesList, bilang, timeList);
+            renderChart(hourLabels, filteredSales);
         },
         error: function (err) {
             $("#loadingMessage").html("Error");
