@@ -274,7 +274,7 @@ html,
     bottom: 20px;
     margin: 0;
     background: #342B7B;
-    overflow: overlay;
+    overflow-x: hidden;
   }
   
 .slide-wrapper {
