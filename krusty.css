@@ -395,23 +395,6 @@ a {
   -webkit-transform: translateX(0%);
           transform: translateX(0%);
 }
-/*
-.show-contact .panel.about {
-  -webkit-transform: translateX(-300%);
-          transform: translateX(-300%);
-}
-.show-contact .panel.start {
-  -webkit-transform: translateX(-200%);
-          transform: translateX(-200%);
-}
-.show-contact .panel.demo {
-  -webkit-transform: translateX(-100%);
-          transform: translateX(-100%);
-}
-.show-contact .panel.contact {
-  -webkit-transform: translateX(0%);
-          transform: translateX(0%);
-}*/
 
 .data-menu {
     position: absolute;

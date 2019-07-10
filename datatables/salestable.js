@@ -120,19 +120,6 @@ function filterByDateTime(dateInput, timeInput){
         }
     }
 
-    /*
-        make an array of int sized 24 (0-23)
-        hourArray
-        solution 1: (loop and less efficient)
-        if the timeList[dateIndex][i] matches an hour 
-        -> (timeList[dateIndex][i].startsWith(<put time here>))
-            add++ to the respective hour
-        
-        solution 2: (parsing and hour mapping) 
-            get timeList[dateIndex][i] and get the hour lang
-            make that an int hourIndex, then use it to index
-            hourArray[hourIndex]++
-    */
     return filteredSales;
 }
 
