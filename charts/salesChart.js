@@ -189,20 +189,71 @@ function filterByDate(array, date){
     return filtered;
 }
 
-function filterByDateTime(array, date, time){
-    var filtered = [];
-    filteredSalesCount = 0;
-    for(var i = 0; i < array.length; i++){
+// function filterByDateTime(array, date, time){
+//     var filtered = [];
+//     filteredSalesCount = 0;
+//     for(var i = 0; i < array.length; i++){
 
-        var obj = array[i];
-        let strDatetime = obj.datetime;
-        if (strDatetime.includes(date + " " + time)) {
-            filtered.push(obj)
+//         var obj = array[i];
+//         let strDatetime = obj.datetime;
+//         if (strDatetime.includes(date + " " + time)) {
+//             filtered.push(obj)
+//         }
+//     }    
+//     filteredSalesCount = filtered.length;
+//     return filtered;
+// }
+/* 
+    function filterByDate(dateInput){
+    let filteredSales = [];
+    let dateIndex = -1;
+    for(let i=0;i<datesList.length;i++){
+        if(datesList[i] === dateInput){
+            dateIndex = i;
+            break;
         }
-    }    
-    filteredSalesCount = filtered.length;
-    return filtered;
+    }
+
+    for (k in dayIndexes[dateIndex]) {
+        filteredSales.push(data[k])
+    }
+    return filteredSales;
 }
+*/
+function filterByDateTime(dateInput, timeInput){
+    let timeList = [];
+    let filteredSales = [];
+    let dateIndex = -1;
+    for(let i=0;i<datesList.length;i++){
+        if(datesList[i] === dateInput){
+            dateIndex = i;
+            break;
+        }
+    }
+    console.log(dayIndexes == null)
+
+    for (let i = 0; i < dayIndexes[dateIndex].length; i++) {
+        if (timeList[dateIndex][i].startsWith(timeInput)) {
+            filteredSales.push(data[dayIndexes[dateIndex][i]])
+        }
+    }
+
+    /*
+        make an array of int sized 24 (0-23)
+        hourArray
+        solution 1: (loop and less efficient)
+        if the timeList[dateIndex][i] matches an hour 
+        -> (timeList[dateIndex][i].startsWith(<put time here>))
+            add++ to the respective hour
+        
+        solution 2: (parsing and hour mapping) 
+            get timeList[dateIndex][i] and get the hour lang
+            make that an int hourIndex, then use it to index
+            hourArray[hourIndex]++
+    */
+   return filteredSales;
+}
+
 
 $("#renderBtn").click(
     function () {
