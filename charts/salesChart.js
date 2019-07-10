@@ -1,4 +1,4 @@
-const flatpickr = require("flatpickr")
+// const flatpickr = require("flatpickr");
 
 
 /*
@@ -28,11 +28,34 @@ $.ajax({
 
 // $(".selector").flatpickr(optional_config);
 
+$("#basicDate").flatpickr({
+    // enableTime: true,
+    dateFormat: "F, d Y" /*H:i"*/
+});
+
+// $("#rangeDate").flatpickr({
+//     mode: 'range',
+//     dateFormat: "Y-m-d"
+// });
+
+$("#timePicker").flatpickr({
+    enableTime: true,
+    noCalendar: true,
+    time_24hr: true,
+    dateFormat: "H:i",
+});
+
+// $(".resetDate").flatpickr({
+//     wrap: true,
+//     weekNumbers: true,
+// });
+
 function float2dollar(value) {
     return "U$ " + (value).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
 }
 
 function renderChart(dateList, count, time) { //temporary lang yung pag pass ng count dito sa chart for checking purposes only kung gagana
+    console.log($("#basicDate").val())
     console.log("oof")
     var ctx = document.getElementById("myChart").getContext('2d');
     console.log("pare")
@@ -76,7 +99,7 @@ function getChartData() {
             let data = [];
             // let dateTime=[], burger=[], species=[]
             // console.log(result)
-            var byDate = filterByDate(result, "2019-06-07", "08");
+            let byDate = filterByDate(result, $("#basicDate").val());
             let labels = [];
             let datesList=[];
             let dateTimeList=[];
