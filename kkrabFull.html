@@ -1,7 +1,6 @@
 <html lang="en">
     <head>
         <link href="krusty.css" rel="stylesheet" type="text/css">
-        <script src="krab.js"></script>
     </head>
     <body>
         <div id = "container">
@@ -13,20 +12,22 @@
                 </span>
                 
             </nav>
-            <!--
-            <div class="big-header">
-                <h1 id="login-header-text">There is no data in the server</h1>
-                <h2 id="login-header-text">Upload a JSON file here.</h2>
-            </div>
-            <form id="first-upload-box" class="white-container" onsubmit="uploadJson()">
-                <div>
-                    <button class="button1"
-                    name="upload-btn"
-                    value="UPLOAD">
+            
+            <div id="no-upload-view">
+                <div class="big-header">
+                    <h1 id="login-header-text">There is no data in the server</h1>
                 </div>
-            </form>
-            -->
-            <div class
+                <div id="first-upload-box" class="white-container">
+                    <h2 id="login-header-text">Upload a JSON file here.</h2>
+                    <div>
+                        <button id="upload-btn" class="button1"
+                        name="upload-btn"
+                        value="UPLOAD">UPLOAD</button>
+                    </div>
+                </div>
+            </div>
+
+            
 
             <div id="krusty_krab_restaurant">
                     <img src="assets/Bottle_Burglars_001.png">
@@ -51,6 +52,8 @@
         <div class="content"></div>
         -->
     </body>
-    <script src="krab.js">
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="krab.js"></script>
 </html>
