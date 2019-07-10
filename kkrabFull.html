@@ -13,7 +13,7 @@
                 
             </nav>
             
-            <div id="no-upload-view">
+            <div id="no-upload-view" class="view">
                 <div class="big-header">
                     <h1 id="login-header-text">There is no data in the server</h1>
                 </div>
@@ -26,7 +26,34 @@
                     </div>
                 </div>
             </div>
-
+            
+            
+            <div id="dashboard-view" class="view">
+                <nav>
+                    <span>
+                        <a href="#sales-slide" class="button1">Sales</a>
+                    </span>  
+                    <span>
+                        <a href="#customer-species-slide" class="button1">Burger data</a>
+                    </span>  
+                    <span>
+                        <a href="#burger-type-slide" class="button1">Customer data</a>
+                    </span>  
+                    
+                </nav>
+                <div id="data-visualization-slides" class="slide-wrapper">
+                    <div id = "sales-slide" class="slide"> Slide 1 </div>
+                    <div id = "customer-species-slide" class="slide"> Slide 2 </div>
+                    <div id = "burger-type-slide" class="slide"> Slide 3 </div>
+                </div>
+            </div>
+            <!--
+            <div id="dashboard-view" class="view">
+                <div id = "sales-view" class="data-view"></div>
+                <div id = "customer-species-view" class="data-view"></div>
+                <div id = "burger-type-view" class="data-view"></div>
+            </div>
+            -->
             
 
             <div id="krusty_krab_restaurant">
@@ -52,8 +79,8 @@
         <div class="content"></div>
         -->
     </body>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script src="krab.js"></script>
 </html>
