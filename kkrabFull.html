@@ -1,12 +1,21 @@
 <html lang="en">
     <head>
         <link href="krusty.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
     </head>
     <body>
         <div id = "container">
             <nav id = "nav-bar">
                 <img class="krusty-logo" src="assets/KrustyKrabLogo.png">
-                <header class="krusty-header">THE KRUSTY KRAB</header> 
+                <!--<header class="krusty-header">THE KRUSTY KRAB</header> -->
+                <nav class = "data-menu">
+                        <ul>
+                            <li><a href="#" data-panel-link="sales">Sales</a></li>
+                            <li><a href="#" data-panel-link="species">Species</a></li>
+                            <li><a href="#" data-panel-link="burger">Burgers</a></li>
+                        </ul>
+
+                    </nav>
                 <span id = "logout-span">
                     <button id="logout-btn" class="button1" >Log-out</button>
                 </span>
@@ -28,59 +37,23 @@
             </div>
             
             
-            <div id="dashboard-view" class="view">
-                <nav>
-                    <span>
-                        <a href="#sales-slide" class="button1">Sales</a>
-                    </span>  
-                    <span>
-                        <a href="#customer-species-slide" class="button1">Burger data</a>
-                    </span>  
-                    <span>
-                        <a href="#burger-type-slide" class="button1">Customer data</a>
-                    </span>  
-                    
-                </nav>
-                <div id="data-visualization-slides" class="slide-wrapper">
-                    <div id = "sales-slide" class="slide"> Slide 1 </div>
-                    <div id = "customer-species-slide" class="slide"> Slide 2 </div>
-                    <div id = "burger-type-slide" class="slide"> Slide 3 </div>
-                </div>
+            <div id="dashboard-view" class="view show-sales">
+                    <div id = "sales-slide" class="panel sales"> 
+                        <table id="myTable" class="display" width="100%"></table>
+                    </div>
+                    <div id = "customer-species-slide" class="panel species"> Slide 2 </div>
+                    <div id = "burger-type-slide" class="panel burger"> Slide 3 </div>
+                
             </div>
-            <!--
-            <div id="dashboard-view" class="view">
-                <div id = "sales-view" class="data-view"></div>
-                <div id = "customer-species-view" class="data-view"></div>
-                <div id = "burger-type-view" class="data-view"></div>
-            </div>
-            -->
             
 
             <div id="krusty_krab_restaurant">
                     <img src="assets/Bottle_Burglars_001.png">
             </div>
         </div>
-        <!--
-        <div class="header">
-            <div class="logo">
-
-            </div>
-            <div class="upload">
-
-            </div>
-            <div class="filter">
-
-            </div>
-            <div class="logout">
-                
-            </div>
-        </div>
-        <div class="navbar"></div>
-        <div class="content"></div>
-        -->
     </body>
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script src="krab.js"></script>
-</html>
+</html> 
