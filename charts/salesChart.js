@@ -1,6 +1,12 @@
 // const flatpickr = require("flatpickr");
+// const app = flatpickr();
 
-
+let datesList=[];
+let dateTimeList=[];
+let timeList = []
+let dayIndexes = []
+let bilang = []
+let data = []
 /*
 $.ajax({
         url: "http://localhost:3000/sales",
@@ -30,7 +36,7 @@ $.ajax({
 
 $("#basicDate").flatpickr({
     // enableTime: true,
-    dateFormat: "F, d Y" /*H:i"*/
+    dateFormat: "Y-m-d" /*H:i"*/
 });
 
 // $("#rangeDate").flatpickr({
@@ -96,17 +102,13 @@ function getChartData() {
         success: function (result) {
             console.log("pasok")
             $("#loadingMessage").html("");
-            let data = [];
+            data=result
             // let dateTime=[], burger=[], species=[]
             // console.log(result)
-            let byDate = filterByDate(result, $("#basicDate").val());
-            let labels = [];
-            let datesList=[];
-            let dateTimeList=[];
+            // let byDate = filterByDate(result, $("#basicDate").val());
+            // let byTime = filterByDateTime($("#basicDate").val(), $("#timePicker").val())
             let tempDate = "2011-07-14"
-            let timeList = []
-            let dayCount = []
-            let bilang = []
+            
             for(let key in result) {
 
                 /*
@@ -128,18 +130,18 @@ function getChartData() {
                 // console.log(tempDateTime);
                 if(datesList.length===0){
                     datesList.push(formatted);
-                    dayCount.push(new Array())
-                    dayCount[0].push(key)
+                    dayIndexes.push(new Array())
+                    dayIndexes[0].push(key)
                     timeList.push(new Array())
                     timeList[0].push(tempDateTime)
-                    //dayCount[key]=1;//dayCount.push(1)
+                    //dayIndexes[key]=1;//dayIndexes.push(1)
                     //substring(11,19);
                 }
                 else{
                     let isInList = false
                     for(let i=0;i<datesList.length;i++){
                         if(datesList[i] === tempDate){
-                            dayCount[i].push(key)
+                            dayIndexes[i].push(key)
                             timeList[i].push(tempDateTime)
                             isInList = true
                         }
@@ -148,8 +150,8 @@ function getChartData() {
 
                     if (!isInList) {
                         datesList.push(formatted);
-                        dayCount.push(new Array())
-                        dayCount[dayCount.length - 1].push(key)
+                        dayIndexes.push(new Array())
+                        dayIndexes[dayIndexes.length - 1].push(key)
                         timeList.push(new Array())
                         timeList[timeList.length - 1].push(tempDateTime)
                     }
@@ -157,13 +159,25 @@ function getChartData() {
                 // timeList.push(tempDateTime)
                 dateTimeList.push(temp);        
             }
-            for(let i=0;i<dayCount.length;i++){
-                bilang.push(dayCount[i].length)
+            for(let i=0;i<dayIndexes.length;i++){
+                bilang.push(dayIndexes[i].length)
+            }
+            // for(let i=0;i<timeList.length;i++){
+            //     if(timeList[i])
+            // }
+            let byDate = filterByDate(result, $("#basicDate").val());
+            let byTime = filterByDateTime($("#basicDate").val(), $("#timePicker").val().substring(0,1))
+            for(let k in timeList){
+                for(let i in datesList){
+                    if(byDate === datesList[k] || byTime === timeList[k][i]){
+                        console.log("yes")
+                    }
+                }
             }
             console.log(datesList)
-            console.log(dayCount)
+            console.log(dayIndexes)
             console.log(timeList)
-            //dayCount is a 2D array of indexes per date use .length to get the display number
+            //dayIndexes is a 2D array of indexes per date use .length to get the display number
             //datesList is a list of all the unique formatted dates for labelling
 
             renderChart(datesList, bilang, timeList);
@@ -186,6 +200,7 @@ function filterByDate(array, date){
         }
     }    
     filteredSalesCount = filtered.length;
+    // console.log(filtered)
     return filtered;
 }
 
@@ -221,21 +236,26 @@ function filterByDate(array, date){
 }
 */
 function filterByDateTime(dateInput, timeInput){
-    let timeList = [];
+    // let timeList = [];
     let filteredSales = [];
     let dateIndex = -1;
     for(let i=0;i<datesList.length;i++){
+        console.log(datesList[i])
+        // console.log(dateInput)
         if(datesList[i] === dateInput){
             dateIndex = i;
+            console.log(dateIndex)
             break;
         }
     }
     console.log(dayIndexes == null)
 
     for (let i = 0; i < dayIndexes[dateIndex].length; i++) {
+        console.log(timeList[dateIndex][i])
         if (timeList[dateIndex][i].startsWith(timeInput)) {
             filteredSales.push(data[dayIndexes[dateIndex][i]])
         }
+        
     }
 
     /*
@@ -251,6 +271,26 @@ function filterByDateTime(dateInput, timeInput){
             make that an int hourIndex, then use it to index
             hourArray[hourIndex]++
     */
+    let hourArray = []
+    for (let i = 0; i < 24; i++) {
+        hourArray.push(0)
+    }
+    
+    for (let i = 0; i < timeList[dateIndex].length; i++) {
+        let val = parseInt(timeList[dateIndex][i].substring(0, 2))
+        hourArray[val]++
+        console.log("now " + hourArray[val])
+    }
+
+    for (let i = 0; i < timeList[dateIndex].length; i++) {
+        let val = parseInt(timeList[dateIndex][i].substring(0, 2))
+        console.log(timeList[dateIndex][i])
+        console.log(timeList[dateIndex][i].substring(0, 2))
+        console.log("oh a " + val)
+        hourArray[val]++
+        console.log("now " + hourArray[val])
+    }
+   console.log(filteredSales)
    return filteredSales;
 }
 
