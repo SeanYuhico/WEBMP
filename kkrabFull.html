@@ -3,7 +3,6 @@
             <link href="node_modules/datatables.net-responsive-dt/css/responsive.dataTables.css" rel="stylesheet" type="text/css">
             <link href="node_modules/datatables.net-dt/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
 
-            <link href="node_modules/datatables.net-responsive/js/dataTables.responsive.min.js" rel="stylesheet" type="text/css">
 
         <link href="krusty.css" rel="stylesheet" type="text/css">
         
@@ -45,13 +44,23 @@
             
             <div id="dashboard-view" class="view show-sales">
                     <div id = "sales-slide" class="panel sales">
-                        <table id="myTable" class="display" width="60%"></table>
+                        <div class="right">
+                            <table id="myTable" class="display table" width="60%"></table>
+                        </div>
                     </div>
                     <div id = "customer-species-slide" class="panel species">
-                        <table id="specTable" class="display" width="60%"></table>
+                        
+                        <div class="right">
+                                <table id="specTable" class="display table" width="60%"></table> 
+                            <canvas id="specChart"></canvas>
+                                            
+                        </div>
                     </div>
                     <div id = "burger-type-slide" class="panel burger">
-                        <table id="burgTable" class="display" width="60%"></table>
+                        <div class="right">
+                            <table id="burgTable" class="display table" width="60%"></table>
+                            <canvas id="burgChart"></canvas>
+                        </div>
                     </div>
                 
             </div>

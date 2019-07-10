@@ -67,6 +67,7 @@ function renderSalesTable() {
     console.log("eyyy")
     data = salesData
     $('#myTable').DataTable({
+        pagingType: "first_last_numbers",
         responsive: true,
         "bLengthChange": false,
         data: data,
@@ -83,6 +84,9 @@ function renderSpeciesTable() {
     data = [speciesData]
     $('#specTable').DataTable({
         "bLengthChange": false,
+        "bFilter": true,
+        "bInfo": false,
+        bPaginate: false,
         data: data,
         "searching": false,
         columns: [
@@ -103,6 +107,9 @@ function renderBurgerTable() {
     
     dataTable = $('#burgTable').DataTable({
         "bLengthChange": false,
+        "bFilter": true,
+        "bInfo": false,
+        bPaginate: false,
         data: data,
         "searching": false,
         columns: [
@@ -167,7 +174,17 @@ function getSpeciesData() {
             console.log("pasok")
             $("#loadingMessage").html("");
             speciesData = result;     
-            renderSpeciesTable();      
+            renderSpeciesTable();    
+            
+            let data = [];
+
+            let labels = [];
+            for(let key in result) {
+                labels.push(key)
+                data.push(result[key])
+            }
+
+            renderSpecChart(data, labels);
         },
         error: function (err) {
             $("#loadingMessage").html("Error");
@@ -181,6 +198,18 @@ function getBurgerData() {
         success: function (result) {
             burgerData = result
             renderBurgerTable()
+
+            var data = [];
+            data.push(result["Krusty Combo"]);
+            data.push(result["Krusty Deluxe"]);
+            data.push(result["Krabby Pattie"]);
+
+            let labels = [];
+            for(let key in result) {
+                labels.push(key)
+            }
+
+            renderBurgChart(data, labels);
         },
         error: function (err) {
             $("#loadingMessage").html("Error");
@@ -274,3 +303,85 @@ function filterByDateTime(dateInput, timeInput){
 
     return filteredSales;
 }
+
+function renderSpecChart(dataset, label) {
+    console.log("oof")
+    var ctx = document.getElementById("specChart").getContext('2d');
+    console.log("pare")
+    console.log(label)
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: label,
+            datasets: [
+                {
+                    label: 'customer species per sale',
+                    data: dataset,
+                    borderColor: ['rgba(75, 192, 192, 1)', 
+                        'rgba(192, 192, 192, 1)', 
+                        'rgba(192, 192, 192, 1)'],
+                    backgroundColor: ['rgba(75, 192, 192, 0.2)',
+                        'rgba(192, 192, 192, 0.2)',
+                        'rgba(192, 192, 192, 0.2)'],
+                    borderWidth: 0
+                }
+            ]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            },
+        }
+    });
+}
+
+function renderBurgChart(dataset, label) {
+    console.log("oof")
+    var ctx = document.getElementById("burgChart").getContext('2d');
+    console.log("pare")
+    console.log(label)
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: label,
+            datasets: [
+                {
+                    label: '# of sales',
+                    data: dataset,
+                    borderColor: ['rgba(75, 192, 192, 1)', 
+                        'rgba(192, 192, 192, 1)', 
+                        'rgba(192, 192, 192, 1)'],
+                    backgroundColor: ['rgba(75, 192, 192, 0.2)',
+                        'rgba(192, 192, 192, 0.2)',
+                        'rgba(192, 192, 192, 0.2)'],
+                    borderWidth: 0
+                }
+            ]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                        // callback: function (value, index, values) {
+                        //     // return float2dollar(value);
+                        // }
+                    }
+                }]
+            },
+        }
+    });
+}
+
+/*
+x-axis = datetime
+
+each bar is the number of sales per day
+stuff is counted based on datetime
+
+*/
+
