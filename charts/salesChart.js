@@ -1,3 +1,6 @@
+const flatpickr = require("flatpickr")
+
+
 /*
 $.ajax({
         url: "http://localhost:3000/sales",
@@ -22,6 +25,8 @@ $.ajax({
         }
     });
 */
+
+// $(".selector").flatpickr(optional_config);
 
 function float2dollar(value) {
     return "U$ " + (value).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');

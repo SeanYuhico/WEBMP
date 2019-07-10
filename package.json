@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/SeanYuhico/WEBMP#readme",
   "dependencies": {
+    "flatpickr": "^4.6.1",
     "json-server": "^0.15.0"
   }
 }
