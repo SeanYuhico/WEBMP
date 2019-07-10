@@ -54,7 +54,42 @@ function float2dollar(value) {
     return "U$ " + (value).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
 }
 
-function renderChart(dateList, count, time) { //temporary lang yung pag pass ng count dito sa chart for checking purposes only kung gagana
+// function renderChart(dateList, count, time) { //temporary lang yung pag pass ng count dito sa chart for checking purposes only kung gagana
+//     console.log($("#basicDate").val())
+//     console.log("oof")
+//     var ctx = document.getElementById("myChart").getContext('2d');
+//     console.log("pare")
+//     console.log(count)
+//     var myChart = new Chart(ctx, {
+//         type: 'bar',
+//         data: {
+//             labels: dateList,
+//             datasets: [
+//                 {
+//                     label: 'sales per date',
+//                     data: count,
+//                     borderColor: ['rgba(75, 192, 192, 1)', 
+//                         'rgba(192, 192, 192, 1)', 
+//                         'rgba(192, 192, 192, 1)'],
+//                     backgroundColor: ['rgba(75, 192, 192, 0.2)',
+//                         'rgba(192, 192, 192, 0.2)',
+//                         'rgba(192, 192, 192, 0.2)'],
+//                     borderWidth: 0
+//                 }
+//             ]
+//         },
+//         options: {
+//             scales: {
+//                 yAxes: [{
+//                     ticks: {
+//                         beginAtZero: true
+//                     }
+//                 }]
+//             },
+//         }
+//     });
+// }
+function renderChart(label, count, time) { //temporary lang yung pag pass ng count dito sa chart for checking purposes only kung gagana
     console.log($("#basicDate").val())
     console.log("oof")
     var ctx = document.getElementById("myChart").getContext('2d');
@@ -63,10 +98,10 @@ function renderChart(dateList, count, time) { //temporary lang yung pag pass ng 
     var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: dateList,
+            labels: label,
             datasets: [
                 {
-                    label: 'sales per date',
+                    label: 'Sales per hour',
                     data: count,
                     borderColor: ['rgba(75, 192, 192, 1)', 
                         'rgba(192, 192, 192, 1)', 
