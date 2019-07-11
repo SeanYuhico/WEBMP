@@ -82,6 +82,8 @@ function renderSalesTable() {
 function renderSpeciesTable() {
     console.log("species data: " + speciesData)
     data = [speciesData]
+    console.log(speciesData)
+    console.log(data)
     $('#specTable').DataTable({
         "bLengthChange": false,
         "bFilter": true,
@@ -104,6 +106,7 @@ function renderSpeciesTable() {
 function renderBurgerTable() {
     console.log("eyyy")
     let data = [burgerData]
+    console.log(data)
     
     dataTable = $('#burgTable').DataTable({
         "bLengthChange": false,
@@ -122,19 +125,32 @@ function renderBurgerTable() {
 
 function renderBurgerSpeciesTable(index) {
     console.log("eyyy")
+    console.log(burgerSpeciesData)
     let data = [burgerSpeciesData[index]]
+    let num
+    if (index === "Krusty Combo")
+        num = "0"
+    else if (index === "Krusty Deluxe")
+        num = "1"
+    else if (index === "Krabby Pattie")
+        num = "2"
     
-    dataTable = $('#burgSpecTable' + index.toString()).DataTable({
+    console.log(data)
+    dataTable = $('#burgSpecTable' + num).DataTable({
+        "bLengthChange": false,
+        "bFilter": true,
+        "bInfo": false,
+        bPaginate: false,
         data: data,
         "searching": false,
         columns: [
-            { data: "Leatherback Turtle", title: "Leatherback Turtle"},
-            { data: "Salmon", title: "Salmon"},
-            { data: "Seahorse", title: "Seahorse"},
-            { data: "Coral", title: "Coral"},
-            { data: "Giant Clam", title: "Giant Clam"},
-            { data: "Gray Whale", title: "Gray Whale"},
-            { data: "Sea Lion", title: "Sea Lion"}
+            { data: "leatherback turtle", title: "Leatherback Turtle"},
+            { data: "salmon", title: "Salmon"},
+            { data: "seahorse", title: "Seahorse"},
+            { data: "coral", title: "Coral"},
+            { data: "giant clam", title: "Giant Clam"},
+            { data: "gray whale", title: "Gray Whale"},
+            { data: "sea lion", title: "Sea Lion"}
           ]
       });
 }
@@ -143,6 +159,7 @@ function getTableData() {
     getSalesData();
     getSpeciesData();
     getBurgerData();
+    getBurgerSpeciesData();
     //renderTables()
 }
 
@@ -221,7 +238,11 @@ function getBurgerSpeciesData() {
     $.ajax({
         url: "http://localhost:3000/burger_by_species",
         success: function (result) {
-            burgerData = result
+            burgerSpeciesData = result
+
+            renderBurgerSpeciesTable("Krusty Combo")
+            renderBurgerSpeciesTable("Krusty Deluxe")
+            renderBurgerSpeciesTable("Krabby Pattie")
         },
         error: function (err) {
             $("#loadingMessage").html("Error");

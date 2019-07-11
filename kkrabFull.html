@@ -18,6 +18,8 @@
                             <li><a href="#" data-panel-link="sales">Sales</a></li>
                             <li><a href="#" data-panel-link="species">Species</a></li>
                             <li><a href="#" data-panel-link="burger">Burgers</a></li>
+                            <li><a href="#" data-panel-link="burger-species">Burger by Species</a></li>
+
                         </ul>
 
                     </nav>
@@ -49,7 +51,6 @@
                         </div>
                     </div>
                     <div id = "customer-species-slide" class="panel species">
-                        
                         <div class="right">
                                 <table id="specTable" class="display table" width="60%"></table> 
                             <canvas id="specChart"></canvas>
@@ -60,6 +61,20 @@
                         <div class="right">
                             <table id="burgTable" class="display table" width="60%"></table>
                             <canvas id="burgChart"></canvas>
+                        </div>
+                    </div>
+                    <div id = "burger-species-slide" class="panel burger-species">
+                        <div class="right">
+                            <h3>Krusty Combo</h3>
+                            <table id="burgSpecTable0" class="display table" width="60%"></table>
+                            <h3>Krusty Deluxe</h3>
+                            <table id="burgSpecTable1" class="display table" width="60%"></table>
+                            <h3>Krabby Pattie</h3>
+                            <table id="burgSpecTable2" class="display table" width="60%"></table>
+
+                            <canvas id="burgSpecChart0"></canvas>
+                            <canvas id="burgSpecChart1"></canvas>
+                            <canvas id="burgSpecChart2"></canvas>
                         </div>
                     </div>
                 
@@ -74,6 +89,7 @@
     <script src="node_modules/jquery/dist/jquery.js"></script>
     <script src="node_modules/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="node_modules/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
+    <script src="chart.js"></script>
+    <script src="flatpickr.js"></script>
     <script src="krab2.js"></script>
 </html> 
