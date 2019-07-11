@@ -313,7 +313,7 @@ a {
     flex-direction: column;
     flex-wrap: wrap;
     align-items: center;
-    
+    opacity: 0.90;
     height: fit-content;
     background-color: white;
     min-height:60%;

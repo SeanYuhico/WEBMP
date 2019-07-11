@@ -7,6 +7,8 @@ let salesData = []
 let burgerSpeciesData = []
 let burgerData = []
 let speciesData = []
+let salesTable
+let myChart
 
 
 $("#basicDate").flatpickr({
@@ -20,6 +22,10 @@ $("#timePicker").flatpickr({
     time_24hr: true,
     dateFormat: "H:i",
 });
+
+function logout() {
+    window.open('kkrabLogin.html', '_self');
+}
 
 $(document).ready(function(){
   var body   = $('#dashboard-view'),
@@ -56,29 +62,15 @@ function renderTables () {
     // renderSpeciesTable();
 }
 
-/*
-
-function renderTable(result) {
-    console.log("eyyy")
-    data = [result]
-    $('#myTable').DataTable({
-        data: result,
-        "searching": false,
-        columns: [
-            { data: "datetime", title: "Date / Time"},
-            { data: "burger", title: "Burger"},
-            { data: "species", title: "Customer Species"}
-          ]
-      });
-}
-
-*/
-
 function renderSalesTable() {
     console.log("sales data: " + salesData)
     console.log("eyyy")
     data = salesData
-    $('#myTable').DataTable({
+    if (salesTable !== undefined) {
+        salesTable.clear()
+        salesTable.rows.add(data)
+    } else {
+    salesTable = $('#myTable').DataTable({
         pagingType: "first_last_numbers",
         responsive: true,
         "bLengthChange": false,
@@ -90,7 +82,36 @@ function renderSalesTable() {
             { data: "species", title: "Customer Species"}
           ]
       });
+    }
 }
+
+function renderFilteredSalesTable(filtered) {
+    console.log("sales data: " + salesData)
+    console.log("filtered data: " + filtered)
+    console.log("eyyy")
+
+    
+    data = filtered
+    if (salesTable !== undefined) {
+        console.log("Woh")
+        
+        salesTable.rows.add(filtered).draw()
+    } else {
+        salesTable = $('#myTable').DataTable({
+        pagingType: "first_last_numbers",
+        responsive: true,
+        "bLengthChange": false,
+        data: data,
+        "searching": false,
+        columns: [
+            { data: "datetime", title: "Date / Time"},
+            { data: "burger", title: "Burger"},
+            { data: "species", title: "Customer Species"}
+          ]
+      });
+    }
+}
+
 function renderSpeciesTable() {
     console.log("species data: " + speciesData)
     data = [speciesData]
@@ -188,7 +209,7 @@ function getSalesData() {
             //console.log(filteredSales)
             //renderTable(filteredSales);
             renderSalesTable();
-            
+            renderSalesChart(datesList, bilang)
         },
         error: function (err) {
             $("#loadingMessage").html("Error");
@@ -293,28 +314,111 @@ function retrieveSalesIndexFilters (result) {
                 timeList[timeList.length - 1].push(tempDateTime)
             }
         }
+
         // timeList.push(tempDateTime)
         dateTimeList.push(temp);        
     }
     for(let i=0;i<dayIndexes.length;i++){
         bilang.push(dayIndexes[i].length)
     }
+
+
+}
+
+let hourArray = []
+function filterSales() {
+    console.log($("#basicDate").val())
+    salesTable.clear().draw()
+    let byDate = filterByDate($("#basicDate").val());
+
+    
+    renderFilteredSalesTable(byDate)
+
+    hourLabels = []
+
+    for (let i = 0; i < 24; i++) {
+        let n = i.toString() + ":00"
+        n = n.toLocaleString('en', {minimumIntegerDigits:2,minimumFractionDigits:2,useGrouping:false})
+        hourLabels.push(n)
+    }
+
+    
+    renderFilteredSalesChart(hourLabels, hourArray)
+}
+
+
+function renderFilteredSalesChart(label, count) { //temporary lang yung pag pass ng count dito sa chart for checking purposes only kung gagana
+    console.log($("#basicDate").val())
+    console.log("oof")
+    let ctx = document.getElementById("myChart").getContext('2d');
+    console.log("pare")
+    console.log(count)
+    if (myChart !== undefined)
+        myChart.destroy();
+    myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: label,
+            datasets: [
+                {
+                    label: 'Sales per hour',
+                    data: count,
+                    borderColor: ['rgba(75, 192, 192, 1)', 
+                        'rgba(192, 192, 192, 1)', 
+                        'rgba(192, 192, 192, 1)'],
+                    backgroundColor: ['rgba(75, 192, 192, 0.2)',
+                        'rgba(192, 192, 192, 0.2)',
+                        'rgba(192, 192, 192, 0.2)'],
+                    borderWidth: 0
+                }
+            ]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            },
+        }
+    });
 }
 
 function filterByDate(dateInput){
     let filteredSales = [];
     let dateIndex = -1;
+    hourArray = []
+
+    for (let i = 0; i < 24; i++) {
+        hourArray.push(0)
+    }
+
+    // get the index of the date
     for(let i=0;i<datesList.length;i++){
+        console.log
         if(datesList[i] === dateInput){
             dateIndex = i;
             break;
         }
     }
 
+    console.log("index: " + dateIndex)
+
+    // push all sales under that day
     for (k in dayIndexes[dateIndex]) {
-        filteredSales.push(data[k])
+        console.log("um k: " + k)
+        console.log(salesData[k])
+        filteredSales.push(salesData[k])
     }
-    return filteredSales;
+
+    for (let i = 0; i < timeList[dateIndex].length; i++) {
+        let val = parseInt(timeList[dateIndex][i].substring(0, 2))
+        hourArray[val]++
+        console.log("now " + hourArray[val])
+    }
+    console.log(filteredSales)
+    return filteredSales
 }
 
 function filterByDateTime(dateInput, timeInput){
@@ -335,6 +439,44 @@ function filterByDateTime(dateInput, timeInput){
     }
 
     return filteredSales;
+}
+
+function renderSalesChart(label, count) { //temporary lang yung pag pass ng count dito sa chart for checking purposes only kung gagana
+    console.log($("#basicDate").val())
+    console.log("oof")
+    let ctx = document.getElementById("myChart").getContext('2d');
+    console.log("pare")
+    console.log(count)
+    if (myChart !== undefined)
+        myChart.destroy();
+    myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: label,
+            datasets: [
+                {
+                    label: 'Sales per day',
+                    data: count,
+                    borderColor: ['rgba(75, 192, 192, 1)', 
+                        'rgba(192, 192, 192, 1)', 
+                        'rgba(192, 192, 192, 1)'],
+                    backgroundColor: ['rgba(75, 192, 192, 0.2)',
+                        'rgba(192, 192, 192, 0.2)',
+                        'rgba(192, 192, 192, 0.2)'],
+                    borderWidth: 0
+                }
+            ]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            },
+        }
+    });
 }
 
 function renderSpecChart(dataset, label) {

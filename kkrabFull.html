@@ -4,8 +4,7 @@
             <link href="node_modules/datatables.net-dt/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
             <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.css">
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/themes/dark.css">
-
+            <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
         <link href="krusty.css" rel="stylesheet" type="text/css">
         
         
@@ -26,7 +25,7 @@
 
                     </nav>
                 <span id = "logout-span">
-                    <button id="logout-btn" class="button1" >Log-out</button>
+                    <button id="logout-btn" class="button1" onclick="logout()">Log-out</button>
                 </span>
                 
             </nav>
@@ -49,13 +48,16 @@
             <div id="dashboard-view" class="view show-sales">
                     <div id = "sales-slide" class="panel sales">
                         <div class="right">
-                            <table id="myTable" class="display table" width="60%"></table>
                             <div>
                                 <p>Basic DateTime</p>
                                 <input type="text" id="basicDate" placeholder="Please select Date Time" data-input>
-                                <p>Time Picker</p>
-                                <input type="text" id="timePicker" placeholder="Please select Time">
+                                <button id="filter-button" class="button1" onclick="filterSales()">Filter</button>
+                                <!--<p>Time Picker</p>
+                                <input type="text" id="timePicker" placeholder="Please select Time">-->
                             </div>
+                            <canvas id="myChart"></canvas>
+                            <table id="myTable" class="display table" width="60%"></table>
+                            
                             <!-- <button class="input-button" title="clear" data-clear>RESET</button> -->
                         </div>
                     </div>

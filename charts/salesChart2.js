@@ -89,6 +89,14 @@ function float2dollar(value) {
 //         }
 //     });
 // }
+// global variables
+let datesList=[];
+let dateTimeList=[];
+let timeList = []
+let dayIndexes = []
+let bilang = []
+let data = []
+
 function renderChart(label, count) { //temporary lang yung pag pass ng count dito sa chart for checking purposes only kung gagana
     console.log($("#basicDate").val())
     console.log("oof")
@@ -125,13 +133,7 @@ function renderChart(label, count) { //temporary lang yung pag pass ng count dit
     });
 }
 
-// global variables
-let datesList=[];
-let dateTimeList=[];
-let timeList = []
-let dayIndexes = []
-let bilang = []
-let data = []
+
 
 function getChartData() {
     $.ajax({
