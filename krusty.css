@@ -499,7 +499,6 @@ a {
 
   .right div nav {
       display: inline;
-      width: inherit;
   }
 #burger-type-slide {
       overflow: hidden;
