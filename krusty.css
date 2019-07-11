@@ -4,7 +4,7 @@
 }
 
 html {
-    background:  linear-gradient(200deg,#caeaf6,#1460c8) no-repeat center center fixed;
+    background:  linear-gradient(200deg,#caeaf6,rgb(20, 96, 200)) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -22,7 +22,7 @@ body {
 html, body {
     height: 100%;
     margin: 0;
-    overflow: scroll;
+    overflow: auto;
 }
 
 div {
@@ -199,6 +199,31 @@ h3 {
     height: inherit;
 }
 
+.button2 {
+    position: relative;
+    padding: 5px;
+    border: 0px;
+    background-color: whitesmoke;
+    background-image: none;
+    border-color: rgb(25%, 27%, 34%);
+    border-width: 2px;
+    
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    border-radius: 20px;
+    margin-bottom: 5px;
+    width: inherit;
+    height: inherit;
+}
+
+.rightfloat {
+    position: absolute;
+    float: right;
+    margin-right: 20px;
+    top: 3.4rem;
+    width: 100px;
+    right: 20px;
+}
+
 .button1:hover {
     background-image: linear-gradient(200deg,#caeaf6,#8989ff);
     box-shadow: 1px 0 5px #caeaf6;
@@ -268,6 +293,7 @@ h2#login-header-text {
     width: 100%;
     min-height: 100%;
     height: auto;
+    overflow: auto;
     position: absolute;
     top: 0px;
     left: 0px;
@@ -316,7 +342,8 @@ a {
     opacity: 0.90;
     height: fit-content;
     background-color: white;
-    min-height:60%;
+    min-height:100%;
+    max-height: fit-content;
     left: 0;
     transition: -webkit-transform 0.8s;
     transition: transform 0.8s;
@@ -444,18 +471,20 @@ a {
   }
   .data-menu li a:hover {
     opacity: 1.0;
+    
   }
   
-  .panel div.right {
-    overflow-y: scroll;
+
+
+  div.right {
     display: table;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-      float: right;
-      flex-direction: column;
+    flex-direction: column;
   }
+
   .right div {
       display: inherit;
   }
@@ -463,3 +492,29 @@ a {
   nav ul li:hover{
     border-bottom:3px rgb(255, 242, 242) solid;
   }
+
+  #datetime {
+      width: inherit;
+  }
+
+  .right div nav {
+      display: inline;
+      width: inherit;
+  }
+#burger-type-slide {
+      overflow: hidden;
+      overflow-y: hidden;
+      position: fixed;
+  }
+
+#customer-species-slide {
+    overflow: hidden;
+    overflow-y: hidden;
+    position: fixed;
+}
+
+#sales-slide {
+    overflow: overlay;
+    overflow-y: auto;
+}
+

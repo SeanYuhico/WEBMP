@@ -47,11 +47,17 @@
             
             <div id="dashboard-view" class="view show-sales">
                     <div id = "sales-slide" class="panel sales">
-                        <div class="right">
-                            <div>
-                                <p>Basic DateTime</p>
-                                <input type="text" id="basicDate" placeholder="Please select Date Time" data-input>
-                                <button id="filter-button" class="button1" onclick="filterSales()">Filter</button>
+                        <div id = "sales-content"class="right">
+                            <div id="datetime">
+                                <nav>
+                                    <div>
+                                    <p>Basic DateTime</p>
+                                    <input type="text" class="button2" id="basicDate" placeholder="Please select Date Time" data-input>
+                                    <button id="filter-button" class="button1" onclick="filterSales()">Filter</button>
+                                    </div>
+                                    
+                                </nav>
+                                <button id="all-sales-button" class="button1 rightfloat" onclick="resetSales()">All Sales</button>
                                 <!--<p>Time Picker</p>
                                 <input type="text" id="timePicker" placeholder="Please select Time">-->
                             </div>
@@ -62,20 +68,20 @@
                         </div>
                     </div>
                     <div id = "customer-species-slide" class="panel species">
-                        <div class="right">
+                        <div id = "species-content"class="right">
                                 <table id="specTable" class="display table" width="60%"></table> 
                             <canvas id="specChart"></canvas>
                                             
                         </div>
                     </div>
                     <div id = "burger-type-slide" class="panel burger">
-                        <div class="right">
+                        <div id = "burger-content" class="right">
                             <table id="burgTable" class="display table" width="60%"></table>
                             <canvas id="burgChart"></canvas>
                         </div>
                     </div>
                     <div id = "burger-species-slide" class="panel burger-species">
-                        <div class="right">
+                        <div id = "burger-spec-content" class="right">
                             <h3>Krusty Combo</h3>
                             <table id="burgSpecTable0" class="display table" width="60%"></table>
                             <canvas id="burgSpecChart0"></canvas>

@@ -10,6 +10,34 @@ let speciesData = []
 let salesTable
 let myChart
 
+let colorArray = ['rgba(75, 192, 192, 1)', 
+'rgb(163, 204, 237)', 
+'rgb(124, 133, 202)', 
+'rgb(20, 96, 200)', 'rgba(75, 192, 192, 1)', 
+'rgb(163, 204, 237)', 
+'rgb(124, 133, 202)', 
+'rgb(20, 96, 200)','rgba(75, 192, 192, 1)', 
+'rgb(163, 204, 237)', 
+'rgb(124, 133, 202)', 
+'rgb(20, 96, 200)','rgba(75, 192, 192, 1)', 
+'rgb(163, 204, 237)', 
+'rgb(124, 133, 202)', 
+'rgb(20, 96, 200)','rgba(75, 192, 192, 1)', 
+'rgb(163, 204, 237)', 
+'rgb(124, 133, 202)', 
+'rgb(20, 96, 200)','rgba(75, 192, 192, 1)', 
+'rgb(163, 204, 237)', 
+'rgb(124, 133, 202)', 
+'rgb(20, 96, 200)','rgba(75, 192, 192, 1)', 
+'rgb(163, 204, 237)', 
+'rgb(124, 133, 202)', 
+'rgb(20, 96, 200)','rgba(75, 192, 192, 1)', 
+'rgb(163, 204, 237)', 
+'rgb(124, 133, 202)', 
+'rgb(20, 96, 200)','rgba(75, 192, 192, 1)', 
+'rgb(163, 204, 237)', 
+'rgb(124, 133, 202)', 
+'rgb(20, 96, 200)']
 
 $("#basicDate").flatpickr({
     // enableTime: true,
@@ -67,8 +95,8 @@ function renderSalesTable() {
     console.log("eyyy")
     data = salesData
     if (salesTable !== undefined) {
-        salesTable.clear()
-        salesTable.rows.add(data)
+        salesTable.clear().draw()
+        salesTable.rows.add(data).draw()
     } else {
     salesTable = $('#myTable').DataTable({
         pagingType: "first_last_numbers",
@@ -339,6 +367,7 @@ function retrieveSalesIndexFilters (result) {
 
 let hourArray = []
 function filterSales() {
+    console.log("bruhh")
     console.log($("#basicDate").val())
     salesTable.clear().draw()
     let byDate = filterByDate($("#basicDate").val());
@@ -358,10 +387,16 @@ function filterSales() {
     renderFilteredSalesChart(hourLabels, hourArray)
 }
 
+function resetSales() {
+    //salesTable.clear().draw()
+    renderSalesTable()
+    myChart.destroy()
+    renderSalesChart(datesList, bilang)
+}
 
 function renderFilteredSalesChart(label, count) { //temporary lang yung pag pass ng count dito sa chart for checking purposes only kung gagana
     console.log($("#basicDate").val())
-    console.log("oof")
+    console.log("ooffffffffff")
     let ctx = document.getElementById("myChart").getContext('2d');
     console.log("pare")
     console.log(count)
@@ -375,12 +410,8 @@ function renderFilteredSalesChart(label, count) { //temporary lang yung pag pass
                 {
                     label: 'Sales per hour',
                     data: count,
-                    borderColor: ['rgba(75, 192, 192, 1)', 
-                        'rgba(192, 192, 192, 1)', 
-                        'rgba(192, 192, 192, 1)'],
-                    backgroundColor: ['rgba(75, 192, 192, 0.2)',
-                        'rgba(192, 192, 192, 0.2)',
-                        'rgba(192, 192, 192, 0.2)'],
+                    borderColor: colorArray,
+                    backgroundColor: colorArray,
                     borderWidth: 0
                 }
             ]
@@ -417,17 +448,19 @@ function filterByDate(dateInput){
 
     console.log("index: " + dateIndex)
 
+    if (dateIndex !== -1) {
     // push all sales under that day
-    for (k in dayIndexes[dateIndex]) {
-        console.log("um k: " + k)
-        console.log(salesData[k])
-        filteredSales.push(salesData[k])
-    }
+        for (k in dayIndexes[dateIndex]) {
+            console.log("um k: " + k)
+            console.log(salesData[k])
+            filteredSales.push(salesData[k])
+        }
 
-    for (let i = 0; i < timeList[dateIndex].length; i++) {
-        let val = parseInt(timeList[dateIndex][i].substring(0, 2))
-        hourArray[val]++
-        console.log("now " + hourArray[val])
+        for (let i = 0; i < timeList[dateIndex].length; i++) {
+            let val = parseInt(timeList[dateIndex][i].substring(0, 2))
+            hourArray[val]++
+            console.log("now " + hourArray[val])
+        }
     }
     console.log(filteredSales)
     return filteredSales
@@ -469,12 +502,8 @@ function renderSalesChart(label, count) { //temporary lang yung pag pass ng coun
                 {
                     label: 'Sales per day',
                     data: count,
-                    borderColor: ['rgba(75, 192, 192, 1)', 
-                        'rgba(192, 192, 192, 1)', 
-                        'rgba(192, 192, 192, 1)'],
-                    backgroundColor: ['rgba(75, 192, 192, 0.2)',
-                        'rgba(192, 192, 192, 0.2)',
-                        'rgba(192, 192, 192, 0.2)'],
+                    borderColor: colorArray,
+                    backgroundColor: colorArray,
                     borderWidth: 0
                 }
             ]
@@ -504,12 +533,8 @@ function renderSpecChart(dataset, label) {
                 {
                     label: 'customer species per sale',
                     data: dataset,
-                    borderColor: ['rgba(75, 192, 192, 1)', 
-                        'rgba(192, 192, 192, 1)', 
-                        'rgba(192, 192, 192, 1)'],
-                    backgroundColor: ['rgba(75, 192, 192, 0.2)',
-                        'rgba(192, 192, 192, 0.2)',
-                        'rgba(192, 192, 192, 0.2)'],
+                    borderColor: colorArray,
+                    backgroundColor: colorArray,
                     borderWidth: 0
                 }
             ]
@@ -539,12 +564,8 @@ function renderBurgChart(dataset, label) {
                 {
                     label: '# of sales',
                     data: dataset,
-                    borderColor: ['rgba(75, 192, 192, 1)', 
-                        'rgba(192, 192, 192, 1)', 
-                        'rgba(192, 192, 192, 1)'],
-                    backgroundColor: ['rgba(75, 192, 192, 0.2)',
-                        'rgba(192, 192, 192, 0.2)',
-                        'rgba(192, 192, 192, 0.2)'],
+                    borderColor: colorArray,
+                    backgroundColor: colorArray,
                     borderWidth: 0
                 }
             ]
@@ -609,12 +630,9 @@ function renderBurgerSpecChart(label, index) {
                 {
                     label: 'Burger Order Per Species',
                     data: newArray,
-                    borderColor: ['rgba(75, 192, 192, 1)', 
-                        'rgba(192, 192, 192, 1)', 
-                        'rgba(192, 192, 192, 1)'],
-                    backgroundColor: ['rgba(75, 192, 192, 0.2)',
-                        'rgba(192, 192, 192, 0.2)',
-                        'rgba(192, 192, 192, 0.2)'],
+                    borderColor: colorArray,
+                    backgroundColor: colorArray,
+                    colorSet: colorArray,
                     borderWidth: 0
                 }
             ]
@@ -630,115 +648,3 @@ function renderBurgerSpecChart(label, index) {
         }
     });
 }
-
-// function renderBurgSpecChart0(dataset, label) {
-//     console.log("oof")
-//     var ctx = document.getElementById("burgSpecChart0").getContext('2d');
-//     console.log("pare")
-//     console.log(label)
-//     var myChart = new Chart(ctx, {
-//         type: 'bar',
-//         data: {
-//             labels: label,
-//             datasets: [
-//                 {
-//                     label: 'customer species per sale',
-//                     data: dataset,
-//                     borderColor: ['rgba(75, 192, 192, 1)', 
-//                         'rgba(192, 192, 192, 1)', 
-//                         'rgba(192, 192, 192, 1)'],
-//                     backgroundColor: ['rgba(75, 192, 192, 0.2)',
-//                         'rgba(192, 192, 192, 0.2)',
-//                         'rgba(192, 192, 192, 0.2)'],
-//                     borderWidth: 0
-//                 }
-//             ]
-//         },
-//         options: {
-//             scales: {
-//                 yAxes: [{
-//                     ticks: {
-//                         beginAtZero: true
-//                     }
-//                 }]
-//             },
-//         }
-//     });
-// }
-// function renderBurgSpecChart1(dataset, label) {
-//     console.log("oof")
-//     var ctx = document.getElementById("burgSpecChart1").getContext('2d');
-//     console.log("pare")
-//     console.log(label)
-//     var myChart = new Chart(ctx, {
-//         type: 'bar',
-//         data: {
-//             labels: label,
-//             datasets: [
-//                 {
-//                     label: 'customer species per sale',
-//                     data: dataset,
-//                     borderColor: ['rgba(75, 192, 192, 1)', 
-//                         'rgba(192, 192, 192, 1)', 
-//                         'rgba(192, 192, 192, 1)'],
-//                     backgroundColor: ['rgba(75, 192, 192, 0.2)',
-//                         'rgba(192, 192, 192, 0.2)',
-//                         'rgba(192, 192, 192, 0.2)'],
-//                     borderWidth: 0
-//                 }
-//             ]
-//         },
-//         options: {
-//             scales: {
-//                 yAxes: [{
-//                     ticks: {
-//                         beginAtZero: true
-//                     }
-//                 }]
-//             },
-//         }
-//     });
-// }
-// function renderBurgSpecChart2(dataset, label) {
-//     console.log("oof")
-//     var ctx = document.getElementById("burgSpecChart2").getContext('2d');
-//     console.log("pare")
-//     console.log(label)
-//     var myChart = new Chart(ctx, {
-//         type: 'bar',
-//         data: {
-//             labels: label,
-//             datasets: [
-//                 {
-//                     label: 'customer species per sale',
-//                     data: dataset,
-//                     borderColor: ['rgba(75, 192, 192, 1)', 
-//                         'rgba(192, 192, 192, 1)', 
-//                         'rgba(192, 192, 192, 1)'],
-//                     backgroundColor: ['rgba(75, 192, 192, 0.2)',
-//                         'rgba(192, 192, 192, 0.2)',
-//                         'rgba(192, 192, 192, 0.2)'],
-//                     borderWidth: 0
-//                 }
-//             ]
-//         },
-//         options: {
-//             scales: {
-//                 yAxes: [{
-//                     ticks: {
-//                         beginAtZero: true
-//                     }
-//                 }]
-//             },
-//         }
-//     });
-// }
-
-/*
-x-axis = datetime
-
-each bar is the number of sales per day
-stuff is counted based on datetime
-
-*/
-
