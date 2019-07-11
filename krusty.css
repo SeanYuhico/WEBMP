@@ -40,6 +40,11 @@ h2 {
     font-size: 1.2rem;
 }
 
+h3 {
+    padding-top: 10px;
+    color: #6b6b6b;
+}
+
 #container {
     display: flex;
     flex-direction: column;
@@ -432,12 +437,13 @@ a {
     text-align: center;
   }
   .data-menu li a {
+    opacity: 0.5;
     color: white;
     display: block;
     padding: 0.5em 0;
   }
   .data-menu li a:hover {
-    opacity: 0.5;
+    opacity: 1.0;
   }
   
   .panel div.right {
@@ -452,4 +458,8 @@ a {
   }
   .right div {
       display: inherit;
+  }
+
+  nav ul li:hover{
+    border-bottom:3px rgb(255, 242, 242) solid;
   }
