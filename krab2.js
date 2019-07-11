@@ -52,7 +52,7 @@ $("#timePicker").flatpickr({
 });
 
 function logout() {
-    window.open('kkrabLogin.html', '_self');
+    window.open('index.html', '_self');
 }
 
 $(document).ready(function(){
