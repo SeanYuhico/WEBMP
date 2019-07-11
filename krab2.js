@@ -276,6 +276,18 @@ function getBurgerSpeciesData() {
             renderBurgerSpeciesTable("Krusty Combo")
             renderBurgerSpeciesTable("Krusty Deluxe")
             renderBurgerSpeciesTable("Krabby Pattie")
+
+            let labels = [];
+            for( key in result["Krusty Combo"]) {
+                labels.push(key)
+            }
+
+            
+
+            renderBurgerSpecChart(labels, "Krusty Combo")
+            renderBurgerSpecChart(labels, "Krusty Deluxe")
+            renderBurgerSpecChart(labels, "Krabby Pattie")
+
         },
         error: function (err) {
             $("#loadingMessage").html("Error");
@@ -551,6 +563,176 @@ function renderBurgChart(dataset, label) {
         }
     });
 }
+
+function renderBurgerSpecChart(label, index) {
+    console.log("eyyy")
+    console.log(burgerSpeciesData)
+    console.log(burgerSpeciesData[index]["sea lion"])
+    let data = burgerSpeciesData[index]
+    let num
+    if (index === "Krusty Combo")
+        num = "0"
+    else if (index === "Krusty Deluxe")
+        num = "1"
+    else if (index === "Krabby Pattie")
+        num = "2"
+    let newArray = []
+
+    for(key in data){
+        newArray.push(burgerSpeciesData[index][key])
+    }
+    console.log(newArray)
+    var ctx = document.getElementById("burgSpecChart" + num).getContext('2d');
+    // console.log(data)
+    // dataTable = $('#burgSpecTable' + num).DataTable({
+    //     "bLengthChange": false,
+    //     "bFilter": true,
+    //     "bInfo": false,
+    //     bPaginate: false,
+    //     data: data,
+    //     "searching": false,
+    //     columns: [
+    //         { data: "leatherback turtle", title: "Leatherback Turtle"},
+    //         { data: "salmon", title: "Salmon"},
+    //         { data: "seahorse", title: "Seahorse"},
+    //         { data: "coral", title: "Coral"},
+    //         { data: "giant clam", title: "Giant Clam"},
+    //         { data: "gray whale", title: "Gray Whale"},
+    //         { data: "sea lion", title: "Sea Lion"}
+    //       ]
+    //   });
+      var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: label,
+            datasets: [
+                {
+                    label: 'Burger Order Per Species',
+                    data: newArray,
+                    borderColor: ['rgba(75, 192, 192, 1)', 
+                        'rgba(192, 192, 192, 1)', 
+                        'rgba(192, 192, 192, 1)'],
+                    backgroundColor: ['rgba(75, 192, 192, 0.2)',
+                        'rgba(192, 192, 192, 0.2)',
+                        'rgba(192, 192, 192, 0.2)'],
+                    borderWidth: 0
+                }
+            ]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            },
+        }
+    });
+}
+
+// function renderBurgSpecChart0(dataset, label) {
+//     console.log("oof")
+//     var ctx = document.getElementById("burgSpecChart0").getContext('2d');
+//     console.log("pare")
+//     console.log(label)
+//     var myChart = new Chart(ctx, {
+//         type: 'bar',
+//         data: {
+//             labels: label,
+//             datasets: [
+//                 {
+//                     label: 'customer species per sale',
+//                     data: dataset,
+//                     borderColor: ['rgba(75, 192, 192, 1)', 
+//                         'rgba(192, 192, 192, 1)', 
+//                         'rgba(192, 192, 192, 1)'],
+//                     backgroundColor: ['rgba(75, 192, 192, 0.2)',
+//                         'rgba(192, 192, 192, 0.2)',
+//                         'rgba(192, 192, 192, 0.2)'],
+//                     borderWidth: 0
+//                 }
+//             ]
+//         },
+//         options: {
+//             scales: {
+//                 yAxes: [{
+//                     ticks: {
+//                         beginAtZero: true
+//                     }
+//                 }]
+//             },
+//         }
+//     });
+// }
+// function renderBurgSpecChart1(dataset, label) {
+//     console.log("oof")
+//     var ctx = document.getElementById("burgSpecChart1").getContext('2d');
+//     console.log("pare")
+//     console.log(label)
+//     var myChart = new Chart(ctx, {
+//         type: 'bar',
+//         data: {
+//             labels: label,
+//             datasets: [
+//                 {
+//                     label: 'customer species per sale',
+//                     data: dataset,
+//                     borderColor: ['rgba(75, 192, 192, 1)', 
+//                         'rgba(192, 192, 192, 1)', 
+//                         'rgba(192, 192, 192, 1)'],
+//                     backgroundColor: ['rgba(75, 192, 192, 0.2)',
+//                         'rgba(192, 192, 192, 0.2)',
+//                         'rgba(192, 192, 192, 0.2)'],
+//                     borderWidth: 0
+//                 }
+//             ]
+//         },
+//         options: {
+//             scales: {
+//                 yAxes: [{
+//                     ticks: {
+//                         beginAtZero: true
+//                     }
+//                 }]
+//             },
+//         }
+//     });
+// }
+// function renderBurgSpecChart2(dataset, label) {
+//     console.log("oof")
+//     var ctx = document.getElementById("burgSpecChart2").getContext('2d');
+//     console.log("pare")
+//     console.log(label)
+//     var myChart = new Chart(ctx, {
+//         type: 'bar',
+//         data: {
+//             labels: label,
+//             datasets: [
+//                 {
+//                     label: 'customer species per sale',
+//                     data: dataset,
+//                     borderColor: ['rgba(75, 192, 192, 1)', 
+//                         'rgba(192, 192, 192, 1)', 
+//                         'rgba(192, 192, 192, 1)'],
+//                     backgroundColor: ['rgba(75, 192, 192, 0.2)',
+//                         'rgba(192, 192, 192, 0.2)',
+//                         'rgba(192, 192, 192, 0.2)'],
+//                     borderWidth: 0
+//                 }
+//             ]
+//         },
+//         options: {
+//             scales: {
+//                 yAxes: [{
+//                     ticks: {
+//                         beginAtZero: true
+//                     }
+//                 }]
+//             },
+//         }
+//     });
+// }
 
 /*
 x-axis = datetime
