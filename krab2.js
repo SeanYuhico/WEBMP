@@ -9,6 +9,18 @@ let burgerData = []
 let speciesData = []
 
 
+$("#basicDate").flatpickr({
+    // enableTime: true,
+    dateFormat: "Y-m-d" /*H:i"*/
+});
+
+$("#timePicker").flatpickr({
+    enableTime: true,
+    noCalendar: true,
+    time_24hr: true,
+    dateFormat: "H:i",
+});
+
 $(document).ready(function(){
   var body   = $('#dashboard-view'),
       nav    = $('.data-menu'),

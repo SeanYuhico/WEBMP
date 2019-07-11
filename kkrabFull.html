@@ -2,11 +2,13 @@
     <head>
             <link href="node_modules/datatables.net-responsive-dt/css/responsive.dataTables.css" rel="stylesheet" type="text/css">
             <link href="node_modules/datatables.net-dt/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
-
+            <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/flatpickr.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.2.3/themes/dark.css">
 
         <link href="krusty.css" rel="stylesheet" type="text/css">
         
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+        
     </head>
     <body>
         <div id = "container">
@@ -48,6 +50,13 @@
                     <div id = "sales-slide" class="panel sales">
                         <div class="right">
                             <table id="myTable" class="display table" width="60%"></table>
+                            <div>
+                                <p>Basic DateTime</p>
+                                <input type="text" id="basicDate" placeholder="Please select Date Time" data-input>
+                                <p>Time Picker</p>
+                                <input type="text" id="timePicker" placeholder="Please select Time">
+                            </div>
+                            <!-- <button class="input-button" title="clear" data-clear>RESET</button> -->
                         </div>
                     </div>
                     <div id = "customer-species-slide" class="panel species">
@@ -89,7 +98,9 @@
     <script src="node_modules/jquery/dist/jquery.js"></script>
     <script src="node_modules/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="node_modules/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <!-- <script src="flatpickr.js"></script> -->
     <script src="chart.js"></script>
-    <script src="flatpickr.js"></script>
+    <!-- <script src="flatpickr.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="krab2.js"></script>
 </html> 

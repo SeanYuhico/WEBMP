@@ -5,6 +5,24 @@ let dayIndexes = []
 let bilang = []
 let data = []
 
+$("#basicDate").flatpickr({
+    // enableTime: true,
+    dateFormat: "Y-m-d" /*H:i"*/
+});
+
+$("#timePicker").flatpickr({
+    enableTime: true,
+    noCalendar: true,
+    time_24hr: true,
+    dateFormat: "H:i",
+});
+
+// $(".resetDate").flatpickr({
+//     wrap: true,
+//     weekNumbers: true,
+// });
+
+
 function uploadJson () {
     
 }
