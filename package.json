@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/SeanYuhico/WEBMP#readme",
   "dependencies": {
-    "chart.js": "^2.8.0",
+    "chart.js": "^2.9.4",
     "datatables.net-dt": "^1.10.19",
     "datatables.net-responsive-dt": "^2.2.3",
     "datatables.net-scroller-dt": "^2.0.0",
